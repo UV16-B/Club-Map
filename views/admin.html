@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Панель администратора</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=d9c12e56-77be-4918-ba45-c1d93100f941&lang=ru_RU"
+        type="text/javascript">
+        </script>
 </head>
 
 <body>
@@ -13,7 +16,8 @@
         <h2>Добавить кружок</h2>
         <form id="addClubForm">
             <input id="name" placeholder="Название">
-            <input id="city" placeholder="Город">
+            <label>Город:</label>
+            <select id="city" name="city"></select>
             <input id="district" placeholder="Район">
             <input id="activity" placeholder="Активность">
             <input id="ageGroup" placeholder="Возрастная группа">
@@ -24,9 +28,10 @@
             <input id="contact" placeholder="Телефон">
             <button type="submit">Добавить</button>
         </form>
-        <p id="statusMessage"></p>
-        <div id="admin-map"></div>
+        <p id="message"></p>
+        <div id="map"></div>
     </div>
+    <script src="/js/admin.js"></script>
 </body>
 
 </html>
