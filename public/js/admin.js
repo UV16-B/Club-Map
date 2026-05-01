@@ -38,6 +38,39 @@ function updateDistricts(city) {
         districtSelect.appendChild(option);
     });
 }
+document.getElementById('addClubForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const newClub = {
+        id: clubsDB.length + 1,
+        name: document.getElementById('name').value,
+        city: document.getElementById('city').value,
+        district: document.getElementById('district').value,
+        activity: document.getElementById('activity').value,
+        ageGroup: document.getElementById('ageGroup').value,
+        price: parseFloat(document.getElementById('price').value),
+        address: document.getElementById('address').value,
+        coordinates: [
+            parseFloat(document.getElementById('lat').value),
+            parseFloat(document.getElementById('lon').value)
+        ],
+        contact: document.getElementById('contact').value
+    };
+    try {
+        const response = await fetch('/api/clubs', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newClub)
+        });
+        if (response.ok) {
+            clubsDB = [...clubsDB, newClub];
+            updateMap(clubsDB);
+            document.getElementById('message').innerText = 'Кружок добавлен!';
+            document.getElementById('addClubForm').reset();
+        }
+        else throw new Error('Ошибка при добавлении кружка');
+    }
+    catch (error) { document.getElementById('message').innerText = 'Ошибка: ${error.message}'; }
+});
 function updateMap(clubs) {
     geoObjects.forEach(obj => map.geoObjects.remove(obj));
     clubs.forEach(club => {
