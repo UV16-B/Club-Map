@@ -11,11 +11,11 @@ fetch('/api/cities')
         citiesDB = data;
         citySelect();
         const defaultCity = "Находка";
-        document.getElementById("city-select").value = defaultCity;
+        document.getElementById("city").value = defaultCity;
         ymaps.ready(() => init(defaultCity));
     });
 function citySelect() {
-    const citySelect = document.getElementById("city-select");
+    const citySelect = document.getElementById("city");
     Object.keys(citiesDB).forEach(city => {
         const option = document.createElement("option");
         option.value = city;
@@ -25,7 +25,7 @@ function citySelect() {
     citySelect.value = "Находка";
 }
 function updateDistricts(city) {
-    const districtSelect = document.getElementById("district-select");
+    const districtSelect = document.getElementById("district");
     districtSelect.innerHTML = '<option value="">Все районы</option>';
     const districts = [...new Set(
         clubsDB
@@ -108,7 +108,7 @@ function init(city) {
         zoom: cfg.zoom,
         controls: ['zoomControl', 'fullscreenControl']
     });
-    document.getElementById("city-select").addEventListener("change", function () {
+    document.getElementById("city").addEventListener("change", function () {
         const selectedCity = this.value;
         const c = citiesDB[selectedCity];
         if (c) map.setCenter([c.lat, c.lon], c.zoom);
