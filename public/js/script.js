@@ -1,44 +1,5 @@
-let map; let clubsDB = []; let citiesDB = {}; let geoObjects = [];
-fetch('/api/clubs')
-    .then(response => response.json())
-    .then(data => {
-        clubsDB = data;
-        updateDistricts("Находка");
-    });
-fetch('/api/cities')
-    .then(response => response.json())
-    .then(data => {
-        citiesDB = data;
-        citySelect();
-        const defaultCity = "Находка";
-        document.getElementById("city").value = defaultCity;
-        ymaps.ready(() => init(defaultCity));
-    });
-function citySelect() {
-    const citySelect = document.getElementById("city");
-    Object.keys(citiesDB).forEach(city => {
-        const option = document.createElement("option");
-        option.value = city;
-        option.textContent = city;
-        citySelect.appendChild(option);
-    });
-    citySelect.value = "Находка";
-}
-function updateDistricts(city) {
-    const districtSelect = document.getElementById("district");
-    districtSelect.innerHTML = '<option value="">Все районы</option>';
-    const districts = [...new Set(
-        clubsDB
-            .filter(club => club.city === city)
-            .map(club => club.district)
-    )];
-    districts.forEach(district => {
-        const option = document.createElement("option");
-        option.value = district;
-        option.textContent = district;
-        districtSelect.appendChild(option);
-    });
-}
+import * as init from './map.js';
+init.initData();
 function determineAgeGroup(birthdate) {
     const today = new Date();
     const birth = new Date(birthdate);
@@ -52,20 +13,22 @@ function determineAgeGroup(birthdate) {
     if (age >= 15 && age <= 17) return "15-17 лет";
     return "Вне диапозона";
 }
-function calculateAgeGroup() {
+document.getElementById('calculator').addEventListener('click', (e) => {
+    e.preventDefault();
     const birthDate = document.getElementById("birth-date").value;
     if (!birthDate) return alert("Введите дату рождения");
     const ageGroup = determineAgeGroup(birthDate);
     document.getElementById("age-group-result").textContent = ageGroup;
-}
-function applyFilters() {
-    const city = document.getElementById("city-select").value;
-    const district = document.getElementById("district-select").value;
-    const activity = document.getElementById("activity-select").value;
+});
+document.getElementById('filter').addEventListener('click', (e) => {
+    e.preventDefault();
+    const city = document.getElementById("city").value;
+    const district = document.getElementById("district").value;
+    const activity = document.getElementById("activity").value;
     const priceMin = parseInt(document.getElementById("price-min").value) || 0;
     const priceMax = parseInt(document.getElementById("price-max").value) || Infinity;
     const ageGroup = document.getElementById("age-group-result").textContent;
-    const filtered = clubsDB.filter(club => {
+    const filtered = init.clubsDB.filter(club => {
         return (
             club.city === city &&
             (district === "" || club.district === district) &&
@@ -75,44 +38,5 @@ function applyFilters() {
             (ageGroup === "" || club.ageGroup === ageGroup)
         );
     });
-    updateMap(filtered);
-}
-function updateMap(clubs) {
-    geoObjects.forEach(obj => map.geoObjects.remove(obj));
-    clubs.forEach(club => {
-        const geoObject = new ymaps.GeoObject({
-            geometry: {
-                type: "Point",
-                coordinates: club.coordinates
-            },
-            properties: {
-                hintContent: club.name,
-                balloonContent: `${club.name}<br>
-                                Адрес: ${club.address}<br>
-                                Стоимость: ${club.price} руб.<br>
-                                Телефон: ${club.contact}`
-            }
-        });
-        map.geoObjects.add(geoObject);
-        geoObjects.push(geoObject)
-    });
-}
-function init(city) {
-    const cfg = citiesDB[city];
-    if (!cfg) {
-        console.error("Город не найден: ", city);
-        return;
-    }
-    map = new ymaps.Map("map", {
-        center: [cfg.lat, cfg.lon],
-        zoom: cfg.zoom,
-        controls: ['zoomControl', 'fullscreenControl']
-    });
-    document.getElementById("city").addEventListener("change", function () {
-        const selectedCity = this.value;
-        const c = citiesDB[selectedCity];
-        if (c) map.setCenter([c.lat, c.lon], c.zoom);
-        updateDistricts(selectedCity);
-    });
-    updateMap(clubsDB);
-}
+    init.updateMap(filtered);
+});

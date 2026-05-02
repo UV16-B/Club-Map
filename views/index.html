@@ -21,7 +21,7 @@
         <div class="form-group">
             <label>Дата рождения ребенка:</label>
             <input type="date" id="birth-date" />
-            <button onclick="calculateAgeGroup()">Определить возраст</button>
+            <button id="calculator">Определить возраст</button>
             <p>Возрастная группа: <span id="age-group-result"></span></p>
         </div>
         <div class="form-group">
@@ -35,7 +35,7 @@
         </div>
         <div class="form-group">
             <label>Вид активности:</label>
-            <select id="activity-select">
+            <select id="activity">
                 <option value="">Любая</option>
                 <option value="Спорт">Спорт</option>
                 <option value="Творчество">Творчество</option>
@@ -44,10 +44,10 @@
                 <option value="Языки">Языки</option>
             </select>
         </div>
-        <button onclick="applyFilters()">Применить фильтры</button>
+        <button id="filter">Применить фильтры</button>
         <div id="map"></div>
     </div>
-    <script src="/js/script.js"></script>
+    <script type="module" src="/js/script.js"></script>
 </body>
 
 </html>
