@@ -9,6 +9,6 @@ function determineAgeGroup(birthdate) {
     if (age >= 8 && age <= 10) return "8-10 лет";
     if (age >= 11 && age <= 14) return "11-14 лет";
     if (age >= 15 && age <= 17) return "15-17 лет";
-    return "Вне диапозона";
+    return "Вне диапазона";
 }
 module.exports = { determineAgeGroup };
