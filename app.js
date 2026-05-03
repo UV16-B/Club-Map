@@ -3,19 +3,19 @@ const app = express();
 app.use(express.static('public')); app.use(express.json());
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'views', 'index.html')));
 app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, 'views', 'admin.html')));
-app.get('/api/cities', (req, res) => {
+app.get('/api/v1/cities', (req, res) => {
     fs.readFile('./data/cities.json', 'utf8', (err, data) => {
         if (err) return res.status(500).json({ error: 'Не удалось прочитать файл' });
         res.json(JSON.parse(data));
     });
 });
-app.get('/api/clubs', (req, res) => {
+app.get('/api/v1/clubs', (req, res) => {
     fs.readFile('./data/clubs.json', 'utf8', (err, data) => {
         if (err) return res.status(500).json({ error: 'Не удалось прочитать файл' });
         res.json(JSON.parse(data));
     });
 });
-app.post('/api/clubs', async (req, res) => {
+app.post('/api/v1/clubs', async (req, res) => {
     try {
         const data = await fs.promises.readFile('./data/clubs.json', 'utf8');
         let clubs = JSON.parse(data);

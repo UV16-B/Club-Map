@@ -1,12 +1,12 @@
 let map; export let clubsDB = []; let citiesDB = {}; let geoObjects = [];
 export function initData() {
-    fetch('/api/clubs')
+    fetch('/api/v1/clubs')
         .then(response => response.json())
         .then(data => {
             clubsDB = data;
             updateDistricts("Находка");
         });
-    fetch('/api/cities')
+    fetch('/api/v1/cities')
         .then(response => response.json())
         .then(data => {
             citiesDB = data;
