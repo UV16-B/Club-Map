@@ -49,10 +49,10 @@ export function updateMap(clubs) {
             club.coordinates,
             {
                 hintContent: club.name,
-                balloonContent: `<b>${club.name}</b><br>
-                                Адрес: ${club.address}<br>
-                                Стоимость: ${club.price} руб.<br>
-                                Телефон: ${club.contact}`
+                balloonContentHeader: club.name,
+                balloonContentBody: `Адрес: ${club.address}<br>
+                                    Стоимость: ${club.price} руб.`,
+                balloonContentFooter: `Телефон: ${club.contact}`
             },
             { preset: 'islands#blueDotIcon' }
         );
