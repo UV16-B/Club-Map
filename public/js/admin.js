@@ -15,7 +15,8 @@ document.getElementById('add-club-form').addEventListener('submit', async (e) =>
             parseFloat(document.getElementById('lat').value),
             parseFloat(document.getElementById('lon').value)
         ],
-        contact: document.getElementById('contact').value
+        contact: document.getElementById('contact').value,
+        link: document.getElementById('link').value
     };
     try {
         const response = await fetch('/api/clubs', {
