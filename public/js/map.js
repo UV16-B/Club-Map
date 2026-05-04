@@ -43,22 +43,21 @@ export function updateDistricts(city) {
 }
 export function updateMap(clubs) {
     geoObjects.forEach(obj => map.geoObjects.remove(obj));
+    geoObjects = [];
     clubs.forEach(club => {
-        const geoObject = new ymaps.GeoObject({
-            geometry: {
-                type: "Point",
-                coordinates: club.coordinates
-            },
-            properties: {
+        const placemark = new ymaps.Placemark(
+            club.coordinates,
+            {
                 hintContent: club.name,
-                balloonContent: `${club.name}<br>
+                balloonContent: `<b>${club.name}</b><br>
                                 Адрес: ${club.address}<br>
                                 Стоимость: ${club.price} руб.<br>
                                 Телефон: ${club.contact}`
-            }
-        });
-        map.geoObjects.add(geoObject);
-        geoObjects.push(geoObject)
+            },
+            { preset: 'islands#blueDotIcon' }
+        );
+        map.geoObjects.add(placemark);
+        geoObjects.push(placemark)
     });
 }
 export function init(city) {

@@ -13,7 +13,7 @@
       132.899395
     ],
     "contact": "+7 (914) 323-47-57",
-    "image": "/data/images/clubs/club1.jpg"
+    "image": "club1.png"
   },
   {
     "id": 2,
@@ -29,6 +29,6 @@
       132.879291
     ],
     "contact": "+7 (914) 331‒15‒14",
-    "image": "/data/images/clubs/club2.jpg"
+    "image": "club2.png"
   }
 ]
