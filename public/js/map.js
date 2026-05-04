@@ -45,13 +45,13 @@ export function updateMap(clubs) {
     geoObjects.forEach(obj => map.geoObjects.remove(obj));
     geoObjects = [];
     clubs.forEach(club => {
+        const link = club.link ? `<a href=${club.link}>${club.name}</a>` : club.name
         const placemark = new ymaps.Placemark(
             club.coordinates,
             {
                 hintContent: club.name,
-                balloonContentHeader: club.name,
-                balloonContentBody: `Адрес: ${club.address}<br>
-                                    Стоимость: ${club.price} руб.`,
+                balloonContentHeader: link,
+                balloonContentBody: `Адрес: ${club.address}<br>Стоимость: ${club.price} руб.`,
                 balloonContentFooter: `Телефон: ${club.contact}`
             },
             { preset: 'islands#blueDotIcon' }

@@ -13,7 +13,7 @@
       132.899395
     ],
     "contact": "+7 (914) 323-47-57",
-    "image": "images/club1.png"
+    "link": "http://lingos.su/"
   },
   {
     "id": 2,
@@ -29,6 +29,6 @@
       132.879291
     ],
     "contact": "+7 (914) 331‒15‒14",
-    "image": "images/club2.png"
+    "link": ""
   }
 ]
