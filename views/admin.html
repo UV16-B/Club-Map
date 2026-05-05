@@ -15,17 +15,31 @@
     <div class="container">
         <h2>Добавить кружок</h2>
         <form id="add-club-form">
-            <input id="name" placeholder="Название">
+            <input id="name" placeholder="Название" required>
             <label>Город:</label>
-            <select id="city" name="city"></select>
-            <input id="district" placeholder="Район">
-            <input id="activity" placeholder="Активность">
-            <input id="age-group" placeholder="Возрастная группа">
-            <input id="price" type="number" placeholder="Цена">
-            <input id="address" placeholder="Адрес">
-            <input id="lat" placeholder="Широта">
-            <input id="lon" placeholder="Долгота">
-            <input id="contact" placeholder="Телефон">
+            <select id="city" name="city" required></select>
+            <input id="district" placeholder="Район" required>
+            <label>Активность:</label>
+            <select id="activity" required>
+                <option value="Спорт">Спорт</option>
+                <option value="Творчество">Творчество</option>
+                <option value="IT">IT</option>
+                <option value="Музыка">Музыка</option>
+                <option value="Языки">Языки</option>
+            </select>
+            <label>Возрастная группа:</label>
+            <select id="age-group" required>
+                <option value="3-5 лет">3-5 лет</option>
+                <option value="6-7 лет">6-7 лет</option>
+                <option value="8-10 лет">8-10 лет</option>
+                <option value="11-14 лет">11-14 лет</option>
+                <option value="15-17 лет">15-17 лет</option>
+            </select>
+            <input id="price" type="number" placeholder="Цена" required>
+            <input id="address" placeholder="Адрес" required>
+            <input id="lat" placeholder="Широта" required>
+            <input id="lon" placeholder="Долгота" required>
+            <input id="contact" placeholder="Телефон" required>
             <input id="link" placeholder="Ссылка (необязательно)">
             <button type="submit">Добавить</button>
         </form>
