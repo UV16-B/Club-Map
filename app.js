@@ -1,27 +1,19 @@
-const express = require('express'); const fs = require('fs').promises; const path = require('path');
+const express = require('express'); const fs = require('fs'); const path = require('path');
 const app = express();
 app.use(express.static('public')); app.use(express.json());
-app.get('/', async (req, res) => {
-    try { res.sendFile(path.join(__dirname, 'views', 'index.html')) }
-    catch (error) { res.status(500).json({ error: 'Ошибка при загрузке страницы' }); }
-});
-app.get('/admin', async (req, res) => {
-    try { res.sendFile(path.join(__dirname, 'views', 'admin.html')) }
-    catch (error) { res.status(500).json({ error: 'Ошибка при загрузке страницы администратора' }); }
-});
-app.get('/api/v1/cities', async (req, res) => {
-    try {
-        const data = await fs.readFile('./data/cities.json', 'utf8');
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'views', 'index.html')));
+app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, 'views', 'admin.html')));
+app.get('/api/v1/cities', (req, res) => {
+    fs.readFile('./data/cities.json', 'utf8', (err, data) => {
+        if (err) return res.status(500).json({ error: 'Не удалось прочитать файл' });
         res.json(JSON.parse(data));
-    }
-    catch (error) { res.status(500).json({ error: 'Не удалось прочитать список кружков' }); }
+    });
 });
-app.get('/api/v1/clubs', async (req, res) => {
-    try {
-        const data = await fs.readFile('./data/clubs.json', 'utf8');
+app.get('/api/v1/clubs', (req, res) => {
+    fs.readFile('./data/clubs.json', 'utf8', (err, data) => {
+        if (err) return res.status(500).json({ error: 'Не удалось прочитать файл' });
         res.json(JSON.parse(data));
-    }
-    catch (error) { res.status(500).json({ error: 'Не удалось прочитать список кружков' }); }
+    });
 });
 app.post('/api/v1/clubs', async (req, res) => {
     try {

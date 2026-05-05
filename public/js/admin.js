@@ -19,7 +19,7 @@ document.getElementById('add-club-form').addEventListener('submit', async (e) =>
         link: document.getElementById('link').value
     };
     try {
-        const response = await fetch('/api/clubs', {
+        const response = await fetch('/api/v1/clubs', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newClub)
