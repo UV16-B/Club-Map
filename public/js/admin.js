@@ -1,5 +1,15 @@
 import * as init from './map.js';
 init.initData();
+document.getElementById('contact').addEventListener('input', function (e) {
+    let x = e.target.value.replace(/\D/g, '').substring(0, 11);
+    if (x[0] !== '7') x = '7' + x;
+    let formatted = '+7 ';
+    if (x.length > 1) formatted += '(' + x.substring(1, 4);
+    if (x.length >= 4) formatted += ') ' + x.substring(4, 7);
+    if (x.length >= 7) formatted += '-' + x.substring(7, 9);
+    if (x.length >= 10) formatted += '-' + x.substring(9, 11);
+    e.target.value = formatted;
+});
 document.getElementById('add-club-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const newClub = {
