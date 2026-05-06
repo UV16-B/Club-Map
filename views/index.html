@@ -14,35 +14,31 @@
 <body>
     <div class="container">
         <h1>Найдите кружок для ребенка</h1>
-        <div class="form-group">
-            <label>Город:</label>
-            <select id="city"></select>
-        </div>
-        <div class="form-group">
-            <label>Дата рождения ребенка:</label>
-            <input type="date" id="birth-date" />
-            <button id="calculator">Определить возраст</button>
-            <p>Возрастная группа: <span id="age-group-result"></span></p>
-        </div>
-        <div class="form-group">
-            <label>Цена (руб):</label>
-            <input type="number" id="price-min" min="0" placeholder="Минимум">
-            <input type="number" id="price-max" min="0" placeholder="Максимум">
-        </div>
-        <div class="form-group">
-            <label>Район:</label>
-            <select id="district"></select>
-        </div>
-        <div class="form-group">
-            <label>Вид активности:</label>
-            <select id="activity">
-                <option value="">Любая</option>
-                <option value="Спорт">Спорт</option>
-                <option value="Творчество">Творчество</option>
-                <option value="IT">IT</option>
-                <option value="Музыка">Музыка</option>
-                <option value="Языки">Языки</option>
-            </select>
+        <div class="grid">
+            <div>
+                <label>Город:</label>
+                <select id="city"></select>
+                <label>Дата рождения ребенка:</label>
+                <input type="date" id="birth-date" />
+                <button id="calculator">Определить возраст</button>
+                <p>Возрастная группа: <span id="age-group-result"></span></p>
+            </div>
+            <div>
+                <label>Цена (руб):</label>
+                <input type="number" id="price-min" min="0" placeholder="Минимум">
+                <input type="number" id="price-max" min="0" placeholder="Максимум">
+                <label>Район:</label>
+                <select id="district"></select>
+                <label>Вид активности:</label>
+                <select id="activity">
+                    <option value="">Любая</option>
+                    <option value="Спорт">Спорт</option>
+                    <option value="Творчество">Творчество</option>
+                    <option value="IT">IT</option>
+                    <option value="Музыка">Музыка</option>
+                    <option value="Языки">Языки</option>
+                </select>
+            </div>
         </div>
         <button id="filter">Применить фильтры</button>
         <div id="map"></div>
