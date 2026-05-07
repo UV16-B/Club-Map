@@ -36,4 +36,13 @@ document.getElementById('filter').addEventListener('click', (e) => {
         );
     });
     init.updateMap(filtered);
+    const result = document.getElementById("search-result");
+    const clubsList = document.getElementById("clubs-list");
+    result.textContent = `Найдено кружков: ${filtered.length}`;
+    clubsList.innerHTML = "";
+    filtered.forEach(club => {
+        const li = document.createElement("li");
+        li.textContent = `${club.name} - ${club.address} (${club.contact})`;
+        clubsList.appendChild(li);
+    });
 });
