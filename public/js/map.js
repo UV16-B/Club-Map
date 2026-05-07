@@ -59,6 +59,7 @@ export function updateMap(clubs) {
             {
                 preset: 'islands#blueDotIcon',
                 iconColor: '#0066cc',
+                hasBalloon: !isTV
             }
         );
         map.geoObjects.add(placemark);
