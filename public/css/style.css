@@ -221,3 +221,7 @@ button:hover {
         font-size: 9px;
     }
 }
+
+#install-btn {
+    margin-top: 14px;
+}

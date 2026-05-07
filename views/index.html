@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Карта детства</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0066cc">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="/css/style.css" />
     <script src="https://api-maps.yandex.ru/2.1/?apikey=d9c12e56-77be-4918-ba45-c1d93100f941&lang=ru_RU"
         type="text/javascript">
@@ -44,6 +48,7 @@
         <p id="search-result"></p>
         <ul id="clubs-list"></ul>
         <div id="map"></div>
+        <button id="install-btn" hidden>Установить приложение</button>
     </div>
     <script type="module" src="/js/script.js"></script>
 </body>

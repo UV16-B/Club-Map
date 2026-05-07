@@ -46,3 +46,27 @@ document.getElementById('filter').addEventListener('click', (e) => {
         clubsList.appendChild(li);
     });
 });
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', async () => {
+        try {
+            const reg = await navigator.serviceWorker.register('/sw.js');
+            console.log('Service Worker зарегистрирован:', reg);
+        }
+        catch (err) { console.error('Ошибка Service Worker:', err); }
+    });
+}
+let deferredPrompt;
+const installBtn = document.getElementById('install-btn');
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.hidden = false;
+});
+installBtn.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log(outcome);
+    deferredPrompt = null;
+    installBtn.hidden = true;
+});
