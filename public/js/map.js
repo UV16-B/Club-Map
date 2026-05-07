@@ -47,6 +47,7 @@ export function updateMap(clubs) {
     clubs.forEach(club => {
         const link = club.link ? `<a href=${club.link}>${club.name}</a>` : club.name
         let price = club.price === 0 ? "бесплатно" : `${club.price} руб.`;
+        const isTV = window.innerWidth >= 3840;
         const placemark = new ymaps.Placemark(
             club.coordinates,
             {
@@ -55,7 +56,10 @@ export function updateMap(clubs) {
                 balloonContentBody: `Адрес: ${club.address}<br>Стоимость: ${price}`,
                 balloonContentFooter: `Телефон: ${club.contact}`
             },
-            { preset: 'islands#blueDotIcon' }
+            {
+                preset: 'islands#blueDotIcon',
+                iconColor: '#0066cc',
+            }
         );
         map.geoObjects.add(placemark);
         geoObjects.push(placemark)
@@ -69,7 +73,7 @@ export function init(city) {
     }
     map = new ymaps.Map("map", {
         center: [cfg.lat, cfg.lon],
-        zoom: cfg.zoom,
+        zoom: window.innerWidth >= 3840 ? cfg.zoom + 2 : cfg.zoom,
         controls: ['zoomControl', 'fullscreenControl']
     });
     document.getElementById("city").addEventListener("change", function () {

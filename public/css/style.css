@@ -102,25 +102,69 @@ button:hover {
     }
 
     .container {
-        max-width: 1400px;
+        min-width: 3600px;
+        margin: 0 auto;
+        padding: 40px;
     }
 
-    button,
+    h1,
+    h2 {
+        font-size: 64px;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    label {
+        font-size: 42px;
+        margin-bottom: 12px;
+    }
+
+    p,
+    li {
+        font-size: 36px;
+    }
+
+    .grid {
+        gap: 40px;
+    }
+
+    input,
     select,
-    input {
-        font-size: 24px;
-        padding: 18px;
+    button {
+        width: 100%;
+        font-size: 38px;
+        padding: 28px;
+        margin-bottom: 28px;
+        border-radius: 20px;
         border: none;
     }
 
+    option {
+        font-size: 18px;
+    }
+
     #map {
-        height: 70vh;
+        height: 360px;
+        width: 1170px;
+        transform: scale(3);
+        transform-origin: 0% 0%;
     }
 
     button:focus,
-    select:focus {
-        outline: 3px solid yellow;
-        transform: scale(1.05);
+    select:focus,
+    input:focus {
+        outline: 8px solid yellow;
+        transform: scale(1.04);
+        transition: 0.2s;
+    }
+
+    #search-result,
+    #clubs-list {
+        display: block;
+    }
+
+    #search-result {
+        margin-top: 10px;
     }
 }
 

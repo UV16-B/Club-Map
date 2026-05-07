@@ -17,20 +17,20 @@
         <div class="grid">
             <div>
                 <label>Город:</label>
-                <select id="city"></select>
+                <select id="city" tabindex="1"></select>
                 <label>Дата рождения ребенка:</label>
-                <input type="date" id="birth-date" />
-                <button id="calculator">Определить возраст</button>
+                <input type="date" id="birth-date" tabindex="2" />
+                <button id="calculator" tabindex="3">Определить возраст</button>
                 <p>Возрастная группа: <span id="age-group-result"></span></p>
             </div>
             <div>
                 <label>Цена (руб):</label>
-                <input type="number" id="price-min" min="0" placeholder="Минимум">
-                <input type="number" id="price-max" min="0" placeholder="Максимум">
+                <input type="number" id="price-min" min="0" placeholder="Минимум" tabindex="4">
+                <input type="number" id="price-max" min="0" placeholder="Максимум" tabindex="5">
                 <label>Район:</label>
-                <select id="district"></select>
+                <select id="district" tabindex="6"></select>
                 <label>Вид активности:</label>
-                <select id="activity">
+                <select id="activity" tabindex="7">
                     <option value="">Любая</option>
                     <option value="Спорт">Спорт</option>
                     <option value="Творчество">Творчество</option>
@@ -40,7 +40,7 @@
                 </select>
             </div>
         </div>
-        <button id="filter">Применить фильтры</button>
+        <button id="filter" tabindex="8">Применить фильтры</button>
         <p id="search-result"></p>
         <ul id="clubs-list"></ul>
         <div id="map"></div>
